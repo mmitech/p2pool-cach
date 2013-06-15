@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
@@ -8,8 +8,7 @@
         <script type="text/javascript" src="d3.v2.min.js"></script>
 	    <link href="css/bootstrap.css" rel="stylesheet">
 		<link href="css/jquery.jqplot.min.css" rel="stylesheet">
-		<!--script src="http://twitter.github.com/bootstrap/assets/js/jquery.js"></script-->
-		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script src="http://twitter.github.com/bootstrap/assets/js/jquery.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script language="javascript" type="text/javascript" src="js/jquery.jqplot.min.js"></script>
 		<script class="include" language="javascript" type="text/javascript" src="js/jqplot.pieRenderer.min.js"></script>
@@ -201,13 +200,21 @@
 
 		}
 
-			function ChangeCurrentPeriod(p_Period, p_Sender)
+		function ChangeCurrentPeriod(p_Period, p_Sender)
+		{
+			period=p_Period;
+			UpdateData();
+			$('#scale_menu li').removeClass('active');
+			$('#' + p_Sender).addClass('active');
+		}
+
+		function AutoRefresh()
+		{
+			if($("#autorefresh").prop('checked'))
 			{
-				period=p_Period;
 				UpdateData();
-				$('#scale_menu li').removeClass('active');
-				$('#' + p_Sender).addClass('active');
 			}
+		}
         </script>
     </head>
     <body>
@@ -220,7 +227,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="/">P2Pool pool (<span class="symbol upper"></span>)</a>
+          <a class="brand" href="/">Rav3n_pl P2Pool pool (<span class="symbol upper"></span>) node</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
 			  <li class="active"><a href="index.html">Stats</a></li>
@@ -242,7 +249,7 @@
 	  	<div class="tab-pane active" id="stats">
 			<center>
 				<div class="well" style="width:1000px">
-				<div class="navbar" style="width: 440px;">
+				<div class="navbar" style="width: 560px;">
 				  <div class="navbar-inner">
 				    <a class="brand" href="javascript:void(0)">Scale</a>
 				    <ul class="nav" id="scale_menu">
@@ -251,6 +258,7 @@
 				      <li id="scale3"><a href="javascript:ChangeCurrentPeriod('week', 'scale3');">Week</a></li>
 				      <li id="scale4"><a href="javascript:ChangeCurrentPeriod('month', 'scale4');">Month</a></li>
 				      <li id="scale5"><a href="javascript:ChangeCurrentPeriod('year', 'scale5');">Year</a></li>
+				      <li><input type="checkbox" name="autorefresh" id="autorefresh" /><label for="autorefresh">Auto-refresh</label></li>
 				    </ul>
 				  </div>
 				</div>
@@ -332,7 +340,8 @@
 	<div style="border-bottom: 1px solid #ddd;"></div>
 	<center>
         <tt>P2Pool version: <span id="version"></span></tt><br/>
-		<tt>Interface by hardcpp <a href="https://github.com/hardcpp/P2PoolExtendedFrontEnd">https://github.com/hardcpp/P2PoolExtendedFrontEnd</a></tt>
+		<tt>Interface by hardcpp <a href="https://github.com/hardcpp/P2PoolExtendedFrontEnd">https://github.com/hardcpp/P2PoolExtendedFrontEnd</a></tt><br/>
+		<tt>Donate if you love it (LTC LdKxw2JewLdo1atDsQ33LiCG9ZUDQ4XmPb) (BTC 1FBa12SPET7YRGHoTXyawp1EBJyFPzju31)</tt>
 	</center>
 		<br/>
 		<script type="text/javascript">
@@ -625,7 +634,7 @@
 		$(document).ready(function() {
 			LoadData();
 		  	UpdateData();
-			setInterval("UpdateData()", 5 * 1000);
+			setInterval("AutoRefresh()", 5 * 1000);
 		    	$('#myTab a:first').tab('show');
 		});
         </script>
