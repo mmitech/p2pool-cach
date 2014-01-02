@@ -45,6 +45,25 @@ nets = dict(
         ANNOUNCE_CHANNEL='#p2pool-alt',
         VERSION_CHECK=lambda v: v >= 60004,
     ),
+    qqcoin=math.Object(
+        PARENT=networks.nets['qqcoin'],
+        SHARE_PERIOD=5, # seconds OMG
+        CHAIN_LENGTH=12*60*60//5, # shares
+        REAL_CHAIN_LENGTH=12*60*60//5, # shares
+        TARGET_LOOKBEHIND=30, # shares
+        SPREAD=50, # blocks
+        IDENTIFIER='c138eee9e7923514'.decode('hex'),
+        PREFIX='d206c3aaaee749b4'.decode('hex'),
+        P2P_PORT=8112,
+        MIN_TARGET=0,
+        MAX_TARGET=2**256//2**20 - 1,
+        PERSIST=True,
+        WORKER_PORT=9112,
+        BOOTSTRAP_ADDRS='p2pool.gotgeeks.com p2pool.dtdns.net rav3n.dtdns.net solidpool.org'.split(' '),
+        ANNOUNCE_CHANNEL='#p2pool-alt',
+        VERSION_CHECK=lambda v: v >= 60000,
+    ),
+
 )
 for net_name, net in nets.iteritems():
     net.NAME = net_name
