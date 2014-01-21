@@ -17,8 +17,8 @@ Requirements:
             Unzip the files into C:\Python27\Lib\site-packages
 
 Additional info about scrypt module:
-        In order to run P2Pool with the YACoin network, you would need to build and install the
-        ltc_scrypt module that includes the scrypt proof of work code that YACoin uses for block hashes.
+        In order to run P2Pool with the CacheCoin network, you would need to build and install the
+        ltc_scrypt module that includes the scrypt proof of work code that CacheCoin uses for block hashes.
 
         Linux:
             cd yacoin_scrypt
@@ -32,10 +32,10 @@ Additional info about scrypt module:
             C:\Python27\python.exe setup.py build --compile=mingw32 install
 
             If you run into an error with unrecognized command line option '-mno-cygwin', see this:
-                http://stackoverflow.com/questions/6034390/compiling-with-cython-and-mingw-produces-gcc-error-unrecognized-command-line-o
+                http://stackoverflow.com/q/6034390/1260906
 
 Running P2Pool:
-    To use P2Pool, you must be running your own local yacoind. For standard
+    To use P2Pool, you must be running your own local cachecoind. For standard
     configurations, using P2Pool should be as simple as:
 
         python run_p2pool.py
