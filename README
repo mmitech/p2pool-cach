@@ -1,6 +1,6 @@
 Requirements:
     Generic:
-        yacoin
+        cachecoin
         yac_scrypt
         Python
         Twisted
@@ -49,4 +49,4 @@ Running P2Pool:
     Run "python run_p2pool.py --help" for additional options.
 
 Donations towards further development:
-    18aMG8Tf4tRK6ppJPhz7yjZd8xjtJGr6y2
+    CACH CahcaBdaE8fFru5S6VofcmdxsHUnJG8wnm
