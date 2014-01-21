@@ -32,7 +32,7 @@ def debug_block_info(dat1):
 
 nets = dict(
     cachecoin=math.Object(
-        P2P_PREFIX='cdf2cßef'.decode('hex'),
+        P2P_PREFIX='cdf2c0ef'.decode('hex'),
         P2P_PORT=22225,
         ADDRESS_VERSION=28,
         RPC_PORT=2225,
