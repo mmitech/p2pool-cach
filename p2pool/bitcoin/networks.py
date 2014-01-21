@@ -33,9 +33,9 @@ def debug_block_info(dat1):
 nets = dict(
     cachecoin=math.Object(
         P2P_PREFIX='cdf2c0ef'.decode('hex'),
-        P2P_PORT=22225,
+        P2P_PORT=2225,
         ADDRESS_VERSION=28,
-        RPC_PORT=8888,
+        RPC_PORT=2224,
         RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
             'cachecoinaddress' in (yield bitcoind.rpc_help()) and
             not (yield bitcoind.rpc_getinfo())['testnet']
