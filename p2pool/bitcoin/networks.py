@@ -35,7 +35,7 @@ nets = dict(
         P2P_PREFIX='cdf2c0ef'.decode('hex'),
         P2P_PORT=22225,
         ADDRESS_VERSION=28,
-        RPC_PORT=2225,
+        RPC_PORT=8888,
         RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
             'cachecoinaddress' in (yield bitcoind.rpc_help()) and
             not (yield bitcoind.rpc_getinfo())['testnet']
@@ -43,8 +43,8 @@ nets = dict(
         SUBSIDY_FUNC=lambda target: get_subsidy(6, 100, target),
         BLOCKHASH_FUNC=lambda header: pack.IntType(256).unpack(__import__('yac_scrypt').getPoWHash(header, data.block_header_type.unpack(header)['timestamp'])),
         POW_FUNC=lambda header: pack.IntType(256).unpack(__import__('yac_scrypt').getPoWHash(header, data.block_header_type.unpack(header)['timestamp'])),
-        BLOCK_PERIOD=60, # s
-        SYMBOL='YAC',
+        BLOCK_PERIOD=900, # s
+        SYMBOL='CACH',
         CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'cachecoin') if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/cachecoin/') if platform.system() == 'Darwin' else os.path.expanduser('~/.cachecoin'), 'cachecoin.conf'),
         BLOCK_EXPLORER_URL_PREFIX='http://yacexplorer.tk/block/',
         ADDRESS_EXPLORER_URL_PREFIX='http://yacexplorer.tk/address/',
