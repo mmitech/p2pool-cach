@@ -363,7 +363,7 @@ def run():
     parser.add_argument('--version', action='version', version=p2pool.__version__)
     parser.add_argument('--net',
         help='use specified network (default: cachecoin)',
-        action='store', choices=sorted(realnets), default='yacoin', dest='net_name')
+        action='store', choices=sorted(realnets), default='cachecoin', dest='net_name')
     parser.add_argument('--testnet',
         help='''use the network's testnet''',
         action='store_const', const=True, default=False, dest='testnet')
