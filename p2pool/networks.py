@@ -24,6 +24,7 @@ nets = dict(
         WORKER_PORT=8336,
         BOOTSTRAP_ADDRS='p2cache.syware.de q39.qhor.net q30.qhor.net'.split(' '),
         ANNOUNCE_CHANNEL='#p2pool-alt',
+        VERSION_CHECK=lambda v: v : True,
     ),
 )
 for net_name, net in nets.iteritems():
