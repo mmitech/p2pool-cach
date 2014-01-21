@@ -22,8 +22,8 @@ nets = dict(
         MAX_TARGET=2**256//2**20 - 1,
         PERSIST=False,
         WORKER_PORT=8336,
-        BOOTSTRAP_ADDRS='p2cache.syware.de q39.qhor.net q30.qhor.net'.split(' '),
-        ANNOUNCE_CHANNEL='#p2pool-alt',
+        BOOTSTRAP_ADDRS='207.30.158.106 p2cache.syware.de q39.qhor.net q30.qhor.net'.split(' '),
+        ANNOUNCE_CHANNEL='#cachecoin',
         VERSION_CHECK=lambda v: True,
     ),
 )
