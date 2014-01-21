@@ -31,13 +31,13 @@ def debug_block_info(dat1):
 	return 0
 
 nets = dict(
-    yacoin=math.Object(
+    cachecoin=math.Object(
         P2P_PREFIX='d9e6e7e5'.decode('hex'),
-        P2P_PORT=7688,
-        ADDRESS_VERSION=77,
-        RPC_PORT=8344,
+        P2P_PORT=22225,
+        ADDRESS_VERSION=28,
+        RPC_PORT=2225,
         RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
-            'yacoinaddress' in (yield bitcoind.rpc_help()) and
+            'cachecoinaddress' in (yield bitcoind.rpc_help()) and
             not (yield bitcoind.rpc_getinfo())['testnet']
         )),
         SUBSIDY_FUNC=lambda target: get_subsidy(6, 100, target),
@@ -49,26 +49,6 @@ nets = dict(
         BLOCK_EXPLORER_URL_PREFIX='http://yacexplorer.tk/block/',
         ADDRESS_EXPLORER_URL_PREFIX='http://yacexplorer.tk/address/',
         SANE_TARGET_RANGE=(2**256//2**20//1000 - 1, 2**256//2**20 - 1),
-    ),
-
-    yacoin_testnet=math.Object(
-        P2P_PREFIX='cdf2c0ef'.decode('hex'),
-        P2P_PORT=17777,
-        ADDRESS_VERSION=111,
-        RPC_PORT=8344,
-        RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
-            'novacoinaddress' in (yield bitcoind.rpc_help()) and
-            (yield bitcoind.rpc_getinfo())['testnet']
-        )),
-        SUBSIDY_FUNC=lambda target: get_subsidy(6, 100, target),
-        BLOCKHASH_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
-        POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
-        BLOCK_PERIOD=600, # s
-        SYMBOL='tNVC',
-        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'YaCoin') if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/YaCoin/') if platform.system() == 'Darwin' else os.path.expanduser('~/.yacoin'), 'yacoin.conf'),
-        BLOCK_EXPLORER_URL_PREFIX='http://nonexistent-yacoin-testnet-explorer/block/',
-        ADDRESS_EXPLORER_URL_PREFIX='http://nonexistent-yacoin-testnet-explorer/address/',
-        SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
     ),
 )
 for net_name, net in nets.iteritems():
