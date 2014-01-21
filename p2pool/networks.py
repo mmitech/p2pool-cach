@@ -17,12 +17,12 @@ nets = dict(
         SPREAD=30, # blocks
         IDENTIFIER='Q28kFRCjXjMYBfJy'.decode('hex'),
         PREFIX='wVWQvM438v6L2mZr'.decode('hex'),
-        P2P_PORT=2225,
+        P2P_PORT=22225,
         MIN_TARGET=0,
         MAX_TARGET=2**256//2**20 - 1,
         PERSIST=False,
         WORKER_PORT=8336,
-        BOOTSTRAP_ADDRS='rav3n.dtdns.net 37.59.119.242 95.138.185.176 213.239.207.114 81.17.30.121 46.163.105.201 88.190.223.101'.split(' '),
+        BOOTSTRAP_ADDRS=''.split('176.9.64.195 '),
         ANNOUNCE_CHANNEL='#p2pool-alt',
     ),
 )
