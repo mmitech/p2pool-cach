@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title>P2Pool - About</title>
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+        <script type="text/javascript" src="d3.v2.min.js"></script>
+	    <link href="css/bootstrap.css" rel="stylesheet">
+		<link href="css/jquery.jqplot.min.css" rel="stylesheet">
+		<script src="http://twitter.github.com/bootstrap/assets/js/jquery.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script language="javascript" type="text/javascript" src="js/jquery.jqplot.min.js"></script>
+		<script class="include" language="javascript" type="text/javascript" src="js/jqplot.pieRenderer.min.js"></script>
+	    <style>
+			body {
+				padding-top: 60px;
+			}
+			line {
+                stroke: black;
+                stroke-width: 1;
+                shape-rendering: crispEdges;
+            }
+
+            .plotline {
+                stroke-width: 1.4;
+                fill: none;
+            }
+
+            text {
+                font-family: Sans-serif;
+                font-size: 12px;
+            }
+	    </style>
+	    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+
+		<script>
+			function ChangeCurrentPeriod(p_Period, p_Sender)
+			{
+				period=p_Period;
+				$('#scale_menu li').removeClass('active');
+				$('#' + p_Sender).addClass('active');
+				document.location.href =  "?" + period;
+			}
+        </script>
+    </head>
+
+    <body>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+		  <div class="navbar-inner">
+			<div class="container">
+			  <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>
+          <a class="brand" href="/">donSchoe's Cachecoin P2Pool Node</a>
+			  <div class="nav-collapse collapse">
+				<ul class="nav">
+				  <li><a href="index.html">Stats</a></li>
+                  <li><a href="graphs.html">Graph</a></li>
+                  <li class="active"><a href="about.html">About</a></li>
+				</ul>
+			  </div><!--/.nav-collapse -->
+			</div>
+		  </div>
+		</div>
+        <p style="display: none">Periods: <span id="period_chooser"></span> Current: <span id="period_current"></span></p>
+
+        <div id="warnings"></div>
+        <h1><center>Mining</center></h1>
+        <p><center>GPU Miner: <a href="https://github.com/Sykh/cacheminer">https://github.com/Sykh/cacheminer</a><br /> <pre>./yacminer --scrypt -o http://q30.qhor.net:8336 -u CP8qRQAESbU6CqJvsjh2tCSZWLQnhQd3n3 -p asdf</pre></center><br /></p>
+        <p><center>CPU Miner: <a href="https://github.com/kalgecin/cpuminer">https://github.com/kalgecin/cpuminer</a><br /> <pre>./minerd -a scrypt-jane -O CP8qRQAESbU6CqJvsjh2tCSZWLQnhQd3n3:asdf -o http://q30.qhor.net:8336</pre></center><br /></p>
+        <h1><center>IRC</center></h1>
+        <p><center>Join #cachecoin on freenode to have a chat! :-)<br /><br /><br /><br /><br /></p>
+    <div style="border-bottom: 1px solid #ddd;"></div>
+    <center>
+        <tt>Interface by hardcpp <a href="https://github.com/hardcpp/P2PoolExtendedFrontEnd">https://github.com/hardcpp/P2PoolExtendedFrontEnd</a></tt><br/>
+    <tt>P2Pool-Cach by Sykh <a href="https://github.com/Sykh/p2pool-cache">https://github.com/Sykh/p2pool-cache</a></tt><br/>
+    <tt>Node by donSchoe CP8qRQAESbU6CqJvsjh2tCSZWLQnhQd3n3 :-)</tt>
+    </center>
+    </body>
+</html>
