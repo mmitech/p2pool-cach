@@ -10,7 +10,7 @@
 // yacoin: increasing Nfactor gradually
 const unsigned char minNfactor = 4;
 const unsigned char maxNfactor = 30;
-int nChainStartTime = 1367991200;
+int nChainStartTime = 1388949883;
 
 
 #define max(a,b)            (((a) > (b)) ? (a) : (b))
