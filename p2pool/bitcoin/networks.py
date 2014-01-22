@@ -46,8 +46,8 @@ nets = dict(
         BLOCK_PERIOD=900, # s
         SYMBOL='CACH',
         CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'cachecoin') if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/cachecoin/') if platform.system() == 'Darwin' else os.path.expanduser('~/.cachecoin'), 'cachecoin.conf'),
-        BLOCK_EXPLORER_URL_PREFIX='http://yacexplorer.tk/block/',
-        ADDRESS_EXPLORER_URL_PREFIX='http://yacexplorer.tk/address/',
+        BLOCK_EXPLORER_URL_PREFIX='http://www.chainbrowser.com/cachecoin/block/',
+        ADDRESS_EXPLORER_URL_PREFIX='http://www.chainbrowser.com/cachecoin/address/',
         SANE_TARGET_RANGE=(2**256//2**20//1000 - 1, 2**256//2**20 - 1),
     ),
 )
