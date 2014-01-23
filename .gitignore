@@ -1,3 +1,4 @@
 *.pyc
-#*.so
-#*.o
+*.so
+*.o
+yac_scrypt/build/*
