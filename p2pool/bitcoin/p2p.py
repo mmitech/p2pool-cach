@@ -6,7 +6,7 @@ import random
 import sys
 import time
 
-from twisted.internet import protocol, task
+from twisted.internet import protocol
 
 import p2pool
 from . import data as bitcoin_data
@@ -14,12 +14,12 @@ from p2pool.util import deferral, p2protocol, pack, variable
 
 class Protocol(p2protocol.Protocol):
     def __init__(self, net):
-        p2protocol.Protocol.__init__(self, net.P2P_PREFIX, 1000000)
+        p2protocol.Protocol.__init__(self, net.P2P_PREFIX, 1000000, ignore_trailing_payload=True)
         self.net = net
 
     def connectionMade(self):
         self.send_version(
-            version=80000,
+            version=90000,
             services=1,
             time=int(time.time()),
             addr_to=dict(
@@ -60,7 +60,7 @@ class Protocol(p2protocol.Protocol):
         if hasattr(self.factory, 'gotConnection'):
             self.factory.gotConnection(self)
 
-        self.pinger = task.LoopingCall(self.send_ping)
+        self.pinger = deferral.RobustLoopingCall(self.send_ping, nonce=1234)
         self.pinger.start(30)
 
     message_inv = pack.ComposedType([
@@ -129,10 +129,18 @@ class Protocol(p2protocol.Protocol):
             self.get_block_header.got_response(self.net.BLOCKHASH_FUNC(bitcoin_data.block_header_type.pack(header)), header)
         self.factory.new_headers.happened([header['header'] for header in headers])
 
-    message_ping = pack.ComposedType([])
+    message_ping = pack.ComposedType([
+		('nonce', pack.IntType(64)),
+	])
     def handle_ping(self):
-        pass
+        self.send_pong(nonce=nonce)
 
+	message_pong = pack.ComposedType([
+        ('nonce', pack.IntType(64)),
+    ])
+    def handle_pong(self, nonce):
+        pass
+        
     message_alert = pack.ComposedType([
         ('message', pack.VarStrType()),
         ('signature', pack.VarStrType()),

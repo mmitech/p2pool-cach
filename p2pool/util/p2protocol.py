@@ -15,12 +15,13 @@ class TooLong(Exception):
     pass
 
 class Protocol(protocol.Protocol):
-    def __init__(self, message_prefix, max_payload_length, traffic_happened=variable.Event()):
+    def __init__(self, message_prefix, max_payload_length, traffic_happened=variable.Event(), ignore_trailing_payload=False):
         self._message_prefix = message_prefix
         self._max_payload_length = max_payload_length
         self.dataReceived2 = datachunker.DataChunker(self.dataReceiver())
         self.traffic_happened = traffic_happened
-    
+        self.ignore_trailing_payload = ignore_trailing_payload
+		
     def dataReceived(self, data):
         self.traffic_happened.happened('p2p/in', len(data))
         self.dataReceived2(data)
@@ -51,7 +52,7 @@ class Protocol(protocol.Protocol):
                 continue
             
             try:
-                self.packetReceived(command, type_.unpack(payload))
+                self.packetReceived(command, type_.unpack(payload, self.ignore_trailing_payload))
             except:
                 print 'RECV', command, payload[:100].encode('hex') + ('...' if len(payload) > 100 else '')
                 log.err(None, 'Error handling message: (see RECV line)')
@@ -75,7 +76,7 @@ class Protocol(protocol.Protocol):
             raise ValueError('command too long')
         type_ = getattr(self, 'message_' + command, None)
         if type_ is None:
-            raise ValueError('invalid command')
+            raise ValueError('invalid command',command)
         #print 'SEND', command, repr(payload2)[:500]
         payload = type_.pack(payload2)
         if len(payload) > self._max_payload_length:
