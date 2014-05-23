@@ -22,7 +22,7 @@ nets = dict(
         MAX_TARGET=2**256//2**20 - 1,
         PERSIST=False,
         WORKER_PORT=8336,
-        BOOTSTRAP_ADDRS='207.30.158.106 p2cache.syware.de q39.qhor.net q30.qhor.net cache.cryptoprojects.eu 5.45.106.239'.split(' '),
+        BOOTSTRAP_ADDRS='207.30.158.106 p2cache.syware.de q39.qhor.net q30.qhor.net p2pool.cachecoin.org 5.45.106.239'.split(' '),
         ANNOUNCE_CHANNEL='#cachecoin-bots',
         VERSION_CHECK=lambda v: True,
     ),
