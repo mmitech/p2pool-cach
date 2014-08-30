@@ -53,7 +53,7 @@ class Protocol(p2protocol.Protocol):
     message_verack = pack.ComposedType([])
     def handle_verack(self):
         self.get_block = deferral.ReplyMatcher(lambda hash: self.send_getdata(requests=[dict(type='block', hash=hash)]))
-        self.get_block_header = deferral.ReplyMatcher(lambda hash: self.send_getheaders(version=1, have=[], last=hash))
+        self.get_block_header = deferral.ReplyMatcher(lambda hash: self.send_getheaders(version=3, have=[], last=hash))
 
         if hasattr(self.factory, 'resetDelay'):
             self.factory.resetDelay()
