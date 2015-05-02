@@ -70,7 +70,7 @@ nets = dict(
         RPC_PORT=12224,
         RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
             'cachecoinaddress' in (yield bitcoind.rpc_help()) and
-            not (yield bitcoind.rpc_getinfo())['testnet']
+            (yield bitcoind.rpc_getinfo())['testnet']
         )),
         SUBSIDY_FUNC=lambda target: get_subsidy(6, 100, target, True),
         BLOCKHASH_FUNC=lambda header: pack.IntType(256).unpack(__import__('yac_scrypt').getPoWHash(header, data.block_header_type.unpack(header)['timestamp'])),
