@@ -259,6 +259,21 @@ class Share(object):
             transaction_hash_refs=transaction_hash_refs,
         )
 
+        if p2pool.DEBUG:
+            print
+            print "Desired timestamp (DATA)"
+            print desired_timestamp
+            print time.time()
+            print
+            print "Prev Share timestamp (DATA)"
+            print previous_share.timestamp
+            print time.time()
+            print
+            print "Share info timestamp (DATA)"
+            print share_info['timestamp']
+            print time.time()
+            print
+
         gentx = dict(
             version=1,
             # coinbase timestamp must be older than share/block timestamp
@@ -276,13 +291,6 @@ class Share(object):
             )],
             lock_time=0,
         )
-
-        if p2pool.DEBUG:
-            print
-            print "Share info timestamp (DATA)"
-            print share_info['timestamp']
-            print time.time()
-            print
 
         def get_share(header, last_txout_nonce=last_txout_nonce):
             min_header = dict(header); del min_header['merkle_root']
