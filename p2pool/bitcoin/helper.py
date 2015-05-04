@@ -46,8 +46,23 @@ def getwork(bitcoind, use_getblocktemplate=False):
     txn_timestamp = 0
 
     for tx in transactions:
+
+        if p2pool.DEBUG:
+            print
+            print "tx timestamp (HELPER)"
+            print tx.timestamp
+            print time.time()
+            print
+
         if tx.timestamp > txn_timestamp:
             txn_timestamp = tx.timestamp
+
+        if p2pool.DEBUG:
+            print
+            print "TXn timestamp (HELPER)"
+            print txn_timestamp
+            print time.time()
+            print
 
     if 'height' not in work:
         work['height'] = (yield bitcoind.rpc_getblock(work['previousblockhash']))['height'] + 1

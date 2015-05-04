@@ -277,6 +277,12 @@ class Share(object):
             lock_time=0,
         )
 
+        if p2pool.DEBUG:
+            print
+            print "Share info timestamp (DATA)"
+            print share_info['timestamp']
+            print time.time()
+            print
 
         def get_share(header, last_txout_nonce=last_txout_nonce):
             min_header = dict(header); del min_header['merkle_root']
@@ -625,10 +631,23 @@ class OkayTracker(forest.Tracker):
                 best = best_share.previous_hash
 
             timestamp_cutoff = min(int(time.time()), best_share.timestamp) - 3600
-            target_cutoff = 2**256//(self.net.SHARE_PERIOD*best_tail_score[1] + 1) * 2 if best_tail_score[1] is not None else 2**256-1
+            target_cutoff = int(2**256//(self.net.SHARE_PERIOD*best_tail_score[1] + 1) * 2 + .5) if best_tail_score[1] is not None else 2**256-1
         else:
             timestamp_cutoff = int(time.time()) - 24*60*60
             target_cutoff = 2**256-1
+
+        if p2pool.DEBUG:
+            print
+            print "Best Share Timestamp (DATA)"
+            print best_share.timestamp
+            print time.time()
+            print
+            print
+            print "Timestamp Cutoff (DATA)"
+            print timestamp_cutoff
+            print math.format_dt(time.time() - timestamp_cutoff)
+            print time.time()
+            print
 
         if p2pool.DEBUG:
             print 'Desire %i shares. Cutoff: %s old diff>%.2f' % (len(desired), math.format_dt(time.time() - timestamp_cutoff), bitcoin_data.target_to_difficulty(target_cutoff))
@@ -735,7 +754,7 @@ def get_warnings(tracker, best_share, net, bitcoind_warning, bitcoind_work_value
         res.append('''LOST CONTACT WITH BITCOIND for %s! Check that it isn't frozen or dead!''' % (math.format_dt(time.time() - bitcoind_work_value['last_update']),))
         line=os.popen('cd /root/p2pool-test && ./rund.sh')
         res.append(line.read().rstrip())
-        
+
     return res
 
 def format_hash(x):
