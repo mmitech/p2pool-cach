@@ -20,11 +20,12 @@ nets = dict(
         P2P_PORT=2226,
         MIN_TARGET=0,
         MAX_TARGET=2**256//2**20 - 1,
-        PERSIST=True,
+        PERSIST=False,
         WORKER_PORT=8336,
         BOOTSTRAP_ADDRS='mehrangarh.cach.co windsor.cach.co malbork.cach.co p2cache.syware.de cach.happymining.de 207.30.158.106 46.101.173.108'.split(' '),
         ANNOUNCE_CHANNEL='#cachecoin-bots',
-        VERSION_CHECK=lambda v: True,
+        VERSION_CHECK = lambda v: 91000 <= v
+        VERSION_WARNING = lambda v: 'Upgrade Cachecoin to >= 0.7.4!' if v < 91000 else None
     ),
     cachecoin_testnet=math.Object(
         PARENT=networks.nets['cachecoin_testnet'],
@@ -38,7 +39,7 @@ nets = dict(
         P2P_PORT=12226,
         MIN_TARGET=0,
         MAX_TARGET=2**256//2**20 - 1,
-        PERSIST=True,
+        PERSIST=False,
         WORKER_PORT=18336,
         BOOTSTRAP_ADDRS='mehrangarh.cach.co windsor.cach.co malbork.cach.co p2cache.syware.de cach.happymining.de 207.30.158.106 46.101.173.108'.split(' '),
         ANNOUNCE_CHANNEL='#cachecoin-bots',
