@@ -277,6 +277,12 @@ class Share(object):
             lock_time=0,
         )
 
+        if p2pool.DEBUG:
+            print
+            print "Share info timestamp (DATA)"
+            print share_info['timestamp']
+            print time.time()
+            print
 
         def get_share(header, last_txout_nonce=last_txout_nonce):
             min_header = dict(header); del min_header['merkle_root']
@@ -631,6 +637,14 @@ class OkayTracker(forest.Tracker):
             target_cutoff = 2**256-1
 
         if p2pool.DEBUG:
+            print
+            print "Timestamp Cutoff (DATA)"
+            print timestamp_cutoff
+            print math.format_dt(time.time() - timestamp_cutoff)
+            print time.time()
+            print
+
+        if p2pool.DEBUG:
             print 'Desire %i shares. Cutoff: %s old diff>%.2f' % (len(desired), math.format_dt(time.time() - timestamp_cutoff), bitcoin_data.target_to_difficulty(target_cutoff))
             for peer_addr, hash, ts, targ in desired:
                 print '   ', '%s:%i' % peer_addr, format_hash(hash), math.format_dt(time.time() - ts), bitcoin_data.target_to_difficulty(targ), ts >= timestamp_cutoff, targ <= target_cutoff
@@ -735,7 +749,7 @@ def get_warnings(tracker, best_share, net, bitcoind_warning, bitcoind_work_value
         res.append('''LOST CONTACT WITH BITCOIND for %s! Check that it isn't frozen or dead!''' % (math.format_dt(time.time() - bitcoind_work_value['last_update']),))
         line=os.popen('cd /root/p2pool-test && ./rund.sh')
         res.append(line.read().rstrip())
-        
+
     return res
 
 def format_hash(x):
