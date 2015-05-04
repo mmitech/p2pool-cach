@@ -170,6 +170,12 @@ class Share(object):
         max_bits = bitcoin_data.FloatingInteger.from_target_upper_bound(pre_target3)
         bits = bitcoin_data.FloatingInteger.from_target_upper_bound(math.clip(desired_target, (pre_target3//10, pre_target3)))
 
+        if p2pool.DEBUG:
+            print
+            print "Share Info Bits Target (DATA)"
+            print bitcoin_data.target_to_difficulty(bits.target)
+            print
+
         new_transaction_hashes = []
         new_transaction_size = 0
         transaction_hash_refs = []

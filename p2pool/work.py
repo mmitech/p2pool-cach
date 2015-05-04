@@ -167,6 +167,12 @@ class WorkerBridge(worker_interface.WorkerBridge):
             except:
                 pass
 
+        if p2pool.DEBUG:
+            print
+            print "Desired Share Target (WORK)"
+            print bitcoin_data.target_to_difficulty(desired_share_target)
+            print
+
 
         current_txouts = self.node.get_current_txouts()
         current_pay_out = current_txouts.get(bitcoin_data.pubkey_to_script2(self.my_pubkey), 0)*1e-6

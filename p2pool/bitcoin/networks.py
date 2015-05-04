@@ -61,7 +61,7 @@ nets = dict(
         CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'cachecoin') if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/cachecoin/') if platform.system() == 'Darwin' else os.path.expanduser('~/.cachecoin'), 'cachecoin.conf'),
         BLOCK_EXPLORER_URL_PREFIX='http://explorer.cach.co/block/',
         ADDRESS_EXPLORER_URL_PREFIX='http://explorer.cach.co/addr/',
-        SANE_TARGET_RANGE=(2**256//2**20//1000000 - 1, 2**256//2**20 - 1),
+        SANE_TARGET_RANGE=(2**256//2**20//1000 - 1, 2**256//2**20 - 1),
     ),
     cachecoin_testnet=math.Object(
         P2P_PREFIX='cdf2c0ef'.decode('hex'),
