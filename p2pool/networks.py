@@ -25,7 +25,6 @@ nets = dict(
         BOOTSTRAP_ADDRS='mehrangarh.cach.co windsor.cach.co malbork.cach.co p2cache.syware.de cach.happymining.de 207.30.158.106 46.101.173.108'.split(' '),
         ANNOUNCE_CHANNEL='#cachecoin-bots',
         VERSION_CHECK = lambda v: 91000 <= v
-        VERSION_WARNING = lambda v: 'Upgrade Cachecoin to >= 0.7.4!' if v < 91000 else None
     ),
     cachecoin_testnet=math.Object(
         PARENT=networks.nets['cachecoin_testnet'],
