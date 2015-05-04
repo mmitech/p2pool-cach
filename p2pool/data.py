@@ -630,6 +630,13 @@ class OkayTracker(forest.Tracker):
                 print 'Punishing share for %r! Jumping from %s to %s!' % (punish_reason, format_hash(best), format_hash(best_share.previous_hash))
                 best = best_share.previous_hash
 
+            if p2pool.DEBUG:
+                print
+                print "Best Share Timestamp (DATA)"
+                print best_share.timestamp
+                print time.time()
+                print
+
             timestamp_cutoff = min(int(time.time()), best_share.timestamp) - 3600
             target_cutoff = int(2**256//(self.net.SHARE_PERIOD*best_tail_score[1] + 1) * 2 + .5) if best_tail_score[1] is not None else 2**256-1
         else:
@@ -637,11 +644,6 @@ class OkayTracker(forest.Tracker):
             target_cutoff = 2**256-1
 
         if p2pool.DEBUG:
-            print
-            print "Best Share Timestamp (DATA)"
-            print best_share.timestamp
-            print time.time()
-            print
             print
             print "Timestamp Cutoff (DATA)"
             print timestamp_cutoff
