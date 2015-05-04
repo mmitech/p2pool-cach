@@ -638,6 +638,11 @@ class OkayTracker(forest.Tracker):
 
         if p2pool.DEBUG:
             print
+            print "Best Share Timestamp (DATA)"
+            print best_share.timestamp
+            print time.time()
+            print
+            print
             print "Timestamp Cutoff (DATA)"
             print timestamp_cutoff
             print math.format_dt(time.time() - timestamp_cutoff)
