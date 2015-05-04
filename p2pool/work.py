@@ -107,6 +107,18 @@ class WorkerBridge(worker_interface.WorkerBridge):
                 )
 
             self.current_work.set(t)
+
+            if p2pool.DEBUG:
+                print
+                print "self current work txn timestamp"
+                print self.current_work.value['txn_timestamp']
+                print time.time()
+                print
+                print "self current work time"
+                print self.current_work.value['time']
+                print time.time()
+                print
+
         self.node.bitcoind_work.changed.watch(lambda _: compute_work())
         self.node.best_block_header.changed.watch(lambda _: compute_work())
         compute_work()
